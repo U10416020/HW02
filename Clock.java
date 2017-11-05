@@ -33,18 +33,8 @@ public class Clock extends LinearLayout {
 
     public Clock(Context context) {
         super(context);
-        //this.addView(onInit(context));
-        this.setPadding(0,10,5,10);
-        this.setOrientation(LinearLayout.HORIZONTAL);
-        //this.setOrientation(LinearLayout.VERTICAL);
-        //this.addView(onInit(context));
-
-
-        this.addView(setView(context));
-        this.addView(setBtnStart(context));
-        this.addView(setBtnPause(context));
-        this.addView(setBtnReset(context));
-        this.addView(setImageBtn(context));
+        this.setOrientation(LinearLayout.VERTICAL);
+        this.addView(onInit(context));
     }
 
     public LinearLayout onInit(Context context){
@@ -90,50 +80,6 @@ public class Clock extends LinearLayout {
         return newLayout;
     }
 
-    public TextView setView(Context context){
-        view = new TextView(context);
-        view.setTextSize(24);
-        view.setText("00");
-        view.setGravity(1);
-        view.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.WRAP_CONTENT,1));
-        return view;
-    }
-
-    public Button setBtnStart(Context context){
-        btstart = new Button(context);
-        btstart.setTextSize(24);
-        btstart.setText(R.string.start);
-        btstart.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.WRAP_CONTENT));
-        btstart.setOnClickListener(start);
-        return btstart;
-    }
-
-    public Button setBtnPause(Context context){
-        btpause = new Button(context);
-        btpause.setTextSize(24);
-        btpause.setText(R.string.pause);
-        btpause.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.WRAP_CONTENT));
-        btpause.setOnClickListener(pause);
-        return btpause;
-    }
-
-    public Button setBtnReset(Context context){
-        btreset = new Button(context);
-        btreset.setTextSize(24);
-        btreset.setText(R.string.reset);
-        btreset.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.WRAP_CONTENT));
-        btreset.setOnClickListener(reset);
-        return btreset;
-    }
-
-    public ImageButton setImageBtn(Context context){
-        imageButton = new ImageButton(context);
-        btpause.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.WRAP_CONTENT));
-        imageButton.setImageResource(btn_dialog);
-        imageButton.setOnClickListener(imgBtn);
-        return imageButton;
-    }
-
     private ImageButton.OnClickListener imgBtn = new ImageButton.OnClickListener(){
         public void onClick(View V){
             removeAllViews();
@@ -143,7 +89,7 @@ public class Clock extends LinearLayout {
     private Button.OnClickListener start = new Button.OnClickListener(){
         public void onClick(View V){
             startTime=System.currentTimeMillis();
-            ThreadDeclaration(1,startTime);
+            ThreadDeclaration();
             btpause.setClickable(true);
             btreset.setClickable(true);
         }
@@ -168,7 +114,7 @@ public class Clock extends LinearLayout {
         }
     };
 
-    private void ThreadDeclaration(int num,long stTime) {
+    private void ThreadDeclaration() {
             Thread t1 = new Thread() {
                 @Override
                 public void run() {

@@ -42,14 +42,10 @@ public class SameActivity extends AppCompatActivity {
         textCount = (TextView)findViewById(R.id.textCount);
         linLay=(LinearLayout)findViewById(R.id.linearLayout1);
         svResult = (ScrollView) findViewById(R.id.scrollView2);
-
-
-
         btnStart.setOnClickListener(start);
         btnPause.setOnClickListener(pause);
         btnStop.setOnClickListener(stop);
         btnReset.setOnClickListener(reset);
-
     }
 
     private Button.OnClickListener start = new Button.OnClickListener(){
